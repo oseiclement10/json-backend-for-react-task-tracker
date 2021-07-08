@@ -1,0 +1,23 @@
+{
+  "name": "task-tracker-back-end",
+  "version": "1.0.0",
+  "description": "json server for react app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "\"react\"",
+    "\"back",
+    "end\""
+  ],
+  "author": "Clement Osei Asante",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.13.2"
+  }
+}
