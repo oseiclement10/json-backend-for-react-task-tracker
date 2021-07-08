@@ -22,5 +22,7 @@ app.use(bodyParser.json());
 const taskRoute = require('./routes/post');
 app.use('/task',taskRoute);
 
-
+app.get('/',(req,res)=>{
+    res.redirect('/task');
+})
 app.listen(port,()=>console.log('server started on port ' + port));
