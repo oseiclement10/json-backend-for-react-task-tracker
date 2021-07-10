@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 5000;
+const cors = require('cors')
+
 
 //database connection
 const config = require('./config/database');
@@ -16,13 +18,16 @@ db.on('error',error=>console.log('error occured at ' + error));
 //middlewares
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cors());
 
 //main route
 
 const taskRoute = require('./routes/post');
+
 app.use('/task',taskRoute);
 
 app.get('/',(req,res)=>{
     res.redirect('/task');
 })
+
 app.listen(port,()=>console.log('server started on port ' + port));

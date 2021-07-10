@@ -11,6 +11,55 @@ router.get('/',(req,res)=>{
         }
     });
 });
+router.patch('/:id',(req,res)=>{
+    Task.findById(req.params.id,(err,data)=>{
+      if(err){
+          console.log(err);
+          res.status(404).json('data not found');
+      }else{
+        let reminder = data.reminder;  
+        let query = {
+            _id:req.params.id
+           }
+          let update ={
+            reminder:!reminder,
+            toString(){
+                return this.reminder;
+            }
+          }
+        Task.updateOne(query,update,(err)=>{
+            if(err){
+                console.log(err);
+                res.status(500).json({msg:"internal server error"});
+            }else{
+                res.status(200).json({msg:"updated reminder successfully"});
+            }
+        });
+         
+      }
+  });
+
+  
+
+})
+
+router.delete('/:id',(req,res)=>{
+    let query = {
+        _id:req.params.id
+    };
+    Task.deleteOne(query,(err)=>{
+        if(err){
+            console.log("error occured");
+            console.log(err);
+            res.status(404).json({
+                msg:" Error occured could not delete "});
+        }else{
+            res.status(200).json({msg:"deletion succeded"});
+        }
+    }
+);
+});
+
 
 router.post('/newpost',(req,res)=>{
     console.log(req.body);
